@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('welcome');
 Route::get('pass/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-
+Route::delete('pass/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('destroy');
 Route::get('pass/edit/{id}', [App\Http\Controllers\HomeController::class, 'edit'])->name('edit');
 Route::patch('/dashboard', [App\Http\Controllers\HomeController::class, 'update'])->name('update');
 
 Route::post('pass/', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
+
+
 
 Auth::routes();
 

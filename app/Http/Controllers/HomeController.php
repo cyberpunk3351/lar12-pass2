@@ -127,4 +127,17 @@ class HomeController extends Controller
         // dd($id);
         return redirect()->route('dashboard');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $pass = Pass::find($id);
+        $pass->delete();
+        return redirect()->route('dashboard');
+    }
 }
