@@ -54,7 +54,7 @@ class HomeController extends Controller
         $role = Role::find($id);
         $rolename = $role->title;
         $passes = Pass::with('category')->where('user_id', '=', $id)->get();
-        dd($passId);
+        //dd($passId);
 
         return view('dashboard', compact('user','passes', 'rolename'));
     }
