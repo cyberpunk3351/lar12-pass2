@@ -51,15 +51,11 @@ class HomeController extends Controller
         $id = Auth::user()->id;
         $currentuser = User::find($id);
         $user = $currentuser->name;
-
         $role = Role::find($id);
         $rolename = $role->title;
         $passId = Pass::all();
-
-        $passes = Pass::with('category')->get();
-        // $role = User::with('role')->where('id', '=', 1)->get();
-        // $role = Role::with('user')->where('role_id', '=', $id)->get();
-        // dd($currentuser);
+        $passes = Pass::with('category')->where('user_id', '=', $id)->get();
+        // dd($passes);
 
         return view('dashboard', compact('user','passes', 'rolename'));
     }
@@ -87,7 +83,6 @@ class HomeController extends Controller
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
-
         $pass->save();
         return view('welcome');
     }
@@ -100,7 +95,6 @@ class HomeController extends Controller
      */
     public function edit($id) {
         $pass = Pass::find($id);
-        // $categoryId = Pass::all()->where('category_id', '=', $id);
         $categorys = Category::all();
         
         //dd($pass);
@@ -121,7 +115,6 @@ class HomeController extends Controller
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
-
         $pass->update();
         $id = $pass->pass_id;
         // dd($id);

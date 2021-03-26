@@ -8,12 +8,12 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    <h3>Создать</h3>
+                    <h3>Редактировать</h3>
                     <form action="{{ route('update', ['id'=>$pass->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         @include('parts.form')
-                        <input type="submit" value="Создаать пароль" class="btn btn-outline-success">
+                        <input type="submit" value="Редактировать" class="btn btn-outline-success">
                 
                     </form>
 
