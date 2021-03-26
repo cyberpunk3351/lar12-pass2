@@ -102,7 +102,8 @@ class HomeController extends Controller
         $pass = Pass::find($id);
         // $categoryId = Pass::all()->where('category_id', '=', $id);
         $categorys = Category::all();
-        // dd($pass);
+        
+        //dd($pass);
         return view('edit', compact('pass', 'categorys'));
     }
 
@@ -122,7 +123,7 @@ class HomeController extends Controller
         $pass->user_id = $id;
 
         $pass->update();
-        // $id = $pass->pass_id;
+        $id = $pass->pass_id;
         // dd($id);
         return redirect()->route('dashboard');
     }

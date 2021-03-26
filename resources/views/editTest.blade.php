@@ -8,8 +8,8 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    <h3>Создать</h3>
-                    <form action="{{ route('update', ['id'=>$pass->id]) }}" method="post" enctype="multipart/form-data">
+                    <h3>Создать Test</h3>
+                    <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         @include('parts.form')
