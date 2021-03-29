@@ -24,6 +24,9 @@ Route::post('pass/', [App\Http\Controllers\HomeController::class, 'store'])->nam
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('index');
+});
 
 
 Auth::routes();

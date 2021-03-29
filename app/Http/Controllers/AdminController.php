@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
 
 class AdminController extends Controller
 {
@@ -21,8 +23,11 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function admin()
     {
+        $id = Auth::user();
+        $role = Auth::user()->id;
+        // dd($role);
         return view('admin');
     }
 }

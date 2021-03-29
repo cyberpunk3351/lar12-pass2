@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_id'
     ];
 
     /**
@@ -44,5 +45,12 @@ class User extends Authenticatable
     public function role()
     {
         return $this->hasOne(Role::class, 'role_id', 'id');
+    }
+
+    public function isAdmin() {
+        if($this->role()->where('role_id', '1')->exists()){
+            return true;
+        }
+        return false;
     }
 }
