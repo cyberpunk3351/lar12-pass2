@@ -5,7 +5,9 @@
     <label for="category_id">Категория</label>
     <select name="category_id" id="category_id" class="form-control">
         @foreach ($categorys as $category)
-            <option value="{{$category->id}}">{{$category->title}}</option>
+            <option value="{{$category->id}}"
+                {{ $category->id == $pass->id ? 'selected' : '' }}
+                >{{$category->title}}</option>
         @endforeach
     </select>
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
+use App\Models\User;
+use App\Models\Pass;
 
 class AdminController extends Controller
 {
@@ -25,9 +27,10 @@ class AdminController extends Controller
      */
     public function admin()
     {
-        $id = Auth::user();
-        $role = Auth::user()->id;
+
+        $users = User::get();
+        // $role
         // dd($role);
-        return view('admin');
+        return view('admin', compact('users'));
     }
 }
