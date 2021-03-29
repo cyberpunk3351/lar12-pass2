@@ -22,6 +22,8 @@ Route::patch('/dashboard', [App\Http\Controllers\HomeController::class, 'update'
 
 Route::post('pass/', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
 
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
 
 
 Auth::routes();

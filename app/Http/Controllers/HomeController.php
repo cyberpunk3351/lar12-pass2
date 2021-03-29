@@ -96,7 +96,7 @@ class HomeController extends Controller
         $pass = Pass::find($id);
         $categorys = Category::all();
         
-        //dd($pass);
+        //dd($categorys);
         return view('edit', compact('pass', 'categorys'));
     }
 
