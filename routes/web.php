@@ -19,10 +19,11 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard
 Route::delete('pass/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('destroy');
 Route::get('pass/edit/{id}', [App\Http\Controllers\HomeController::class, 'edit'])->name('edit');
 Route::patch('/dashboard', [App\Http\Controllers\HomeController::class, 'update'])->name('update');
-
 Route::post('pass/', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::get('/user/edit/{id}', [App\Http\Controllers\AdminController::class, 'edit'])->name('user.edit');
+Route::patch('/dashboard', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('index');

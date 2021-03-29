@@ -66,7 +66,8 @@ class HomeController extends Controller
      */
     public function create() {
         $categorys = Category::all();
-        // dd($roles);
+        // $pass = Pass::all();
+        // dd($pass);
         return view('create', compact('categorys'));
     }
 

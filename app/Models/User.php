@@ -47,10 +47,4 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'role_id', 'id');
     }
 
-    public function isAdmin() {
-        if($this->role()->where('role_id', '1')->exists()){
-            return true;
-        }
-        return false;
-    }
 }

@@ -29,8 +29,42 @@ class AdminController extends Controller
     {
 
         $users = User::get();
-        // $role
+        $roles = Role::get();
         // dd($role);
-        return view('admin', compact('users'));
+        return view('admin.admin', compact('users', 'roles'));
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+        $user = User::find($id);
+        $roles = Role::get();
+        
+        // dd($userRole);
+        return view('admin.edit', compact('user', 'roles'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $role = User::find($id);
+        $role->name = $request->name;
+        $role->role_id = $id;
+        $role->update();
+        $id = $role->user_id;
+        dd($role);
+        return redirect()->route('dashboard');
+    }
+
 }
