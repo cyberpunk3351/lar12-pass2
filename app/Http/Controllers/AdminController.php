@@ -8,8 +8,10 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Pass;
 
+
 class AdminController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -27,11 +29,9 @@ class AdminController extends Controller
      */
     public function admin()
     {
-
         $users = User::get();
-        $roles = Role::get();
-        // dd($role);
-        return view('admin.admin', compact('users', 'roles'));
+
+        return view('admin.index', compact('users'));
     }
 
     /**
@@ -41,11 +41,11 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $user = User::find($id);
-        $roles = Role::get();
-        
-        // dd($userRole);
-        return view('admin.edit', compact('user', 'roles'));
+        $users = User::find($id);
+        $roles = Role::with('user')->get();
+
+        //dd($users);
+        return view('admin.edit', compact('users', 'roles'));
     }
 
     /**
@@ -59,12 +59,12 @@ class AdminController extends Controller
     {
 
         $role = User::find($id);
-        // $role->name = $request->name;
+        // $role->title = $request->title;
         $role->role_id = $request->role_id;
+        // $pass->user_id = $id;
         $role->update();
-        $id = $role->user_id;
-        // dd($role);
-        return redirect()->route('dashboard');
+        // $id = $pass->pass_id;
+        // dd($id);
+        return redirect()->route('index');
     }
-
 }

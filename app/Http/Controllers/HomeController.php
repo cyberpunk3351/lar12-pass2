@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\User;
-use App\Models\Pass;
-use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Pass;
+use App\Models\Category;
+
 
 class HomeController extends Controller
 {
@@ -28,35 +29,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function main()
-    {
-        return view('welcome');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function dashboard()
-    {
         $id = Auth::user()->id;
-        $currentuser = User::find($id);
-        $user = $currentuser->name;
-        $role = Role::find($id);
-        $rolename = $role->title;
-        $passes = Pass::with('category')->where('user_id', '=', $id)->get();
-        //dd($passId);
+        $users = User::with('role')->where('id', $id)->get();
+        $passes = Pass::with('user', 'category')->where('user_id', $id)->get();
 
-        return view('dashboard', compact('user','passes', 'rolename'));
+        //dd($passes);
+        return view('dashboard', compact('users', 'passes'));
     }
 
     /**
@@ -84,7 +62,7 @@ class HomeController extends Controller
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
         $pass->save();
-        return view('welcome');
+        return redirect()->route('home');
     }
 
     /**
@@ -95,9 +73,9 @@ class HomeController extends Controller
      */
     public function edit($id) {
         $pass = Pass::find($id);
-        $categorys = Category::all();
-        
-        //dd($categorys);
+        $categorys = Category::with('pass')->get();
+
+        //dd($pass);
         return view('edit', compact('pass', 'categorys'));
     }
 
@@ -118,7 +96,7 @@ class HomeController extends Controller
         $pass->update();
         // $id = $pass->pass_id;
         // dd($id);
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     /**
@@ -131,6 +109,7 @@ class HomeController extends Controller
     {
         $pass = Pass::find($id);
         $pass->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
+
 }

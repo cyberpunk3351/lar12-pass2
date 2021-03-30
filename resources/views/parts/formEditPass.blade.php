@@ -3,10 +3,13 @@
 </div>
 <div class="form-group">
     <label for="category_id">Категория</label>
+
     <select name="category_id" id="category_id" class="form-control">
+        
         @foreach ($categorys as $category)
+            
             <option value="{{$category->id}}"
-                {{ $category->id == $pass->id ? 'selected' : '' }}
+                {{ $category->id == $pass->category_id ? 'selected' : '' }}
                 >{{$category->title}}</option>
         @endforeach
     </select>

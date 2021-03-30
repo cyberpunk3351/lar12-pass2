@@ -20,7 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'user_id'
     ];
 
     /**
@@ -42,9 +41,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
-    {
-        return $this->hasOne(Role::class, 'role_id', 'id');
+    public function role() {
+
+        return $this->hasOne(Role::class,'id', 'role_id');
+
+    }
+
+    public function pass() {
+
+        return $this->hasMany(Pass::class,'user_id', 'id');
+
     }
 
 }

@@ -9,12 +9,12 @@
 
                 <div class="card-body">
                     <h3>Редактировать</h3>
-                    <form action="{{ route('update', ['id'=>$pass->id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('pass.update', ['id'=>$pass->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
-                        @include('parts.form')
+                        @include('parts.formEditPass')
                         <input type="submit" value="Редактировать" class="btn btn-outline-success">
-                
+
                     </form>
 
                 </div>

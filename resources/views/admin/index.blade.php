@@ -5,18 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Управление пользователями</div>
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
                 <div class="card-body">
-                    @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                    @endif
                     @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
                     @endif
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -32,8 +29,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->role->title}}</td>
                                     <td>
-                                        <a href="{{ route('user.edit', ['id'=>$user->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-x-square"></i></button>
+                                        <a href="{{ route('role.edit', ['id'=>$user->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -44,6 +40,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
