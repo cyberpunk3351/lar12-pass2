@@ -30,7 +30,6 @@ class AdminController extends Controller
     public function admin()
     {
         $users = User::get();
-
         return view('admin.index', compact('users'));
     }
 
@@ -43,7 +42,6 @@ class AdminController extends Controller
     public function edit($id) {
         $users = User::find($id);
         $roles = Role::with('user')->get();
-
         //dd($users);
         return view('admin.edit', compact('users', 'roles'));
     }
@@ -59,11 +57,8 @@ class AdminController extends Controller
     {
 
         $role = User::find($id);
-        // $role->title = $request->title;
         $role->role_id = $request->role_id;
-        // $pass->user_id = $id;
         $role->update();
-        // $id = $pass->pass_id;
         // dd($id);
         return redirect()->route('index');
     }

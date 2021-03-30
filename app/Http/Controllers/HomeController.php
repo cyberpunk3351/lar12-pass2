@@ -32,7 +32,6 @@ class HomeController extends Controller
         $id = Auth::user()->id;
         $users = User::with('role')->where('id', $id)->get();
         $passes = Pass::with('user', 'category')->where('user_id', $id)->get();
-
         //dd($passes);
         return view('dashboard', compact('users', 'passes'));
     }
@@ -44,7 +43,6 @@ class HomeController extends Controller
      */
     public function create() {
         $categorys = Category::all();
-        // $pass = Pass::all();
         // dd($pass);
         return view('create', compact('categorys'));
     }
@@ -92,9 +90,7 @@ class HomeController extends Controller
         $pass = Pass::find($id);
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
-        // $pass->user_id = $id;
         $pass->update();
-        // $id = $pass->pass_id;
         // dd($id);
         return redirect()->route('home');
     }
