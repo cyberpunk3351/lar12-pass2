@@ -59,11 +59,11 @@ class AdminController extends Controller
     {
 
         $role = User::find($id);
-        $role->name = $request->name;
-        $role->role_id = $id;
+        // $role->name = $request->name;
+        $role->role_id = $request->role_id;
         $role->update();
         $id = $role->user_id;
-        dd($role);
+        // dd($role);
         return redirect()->route('dashboard');
     }
 

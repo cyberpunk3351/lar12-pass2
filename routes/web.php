@@ -23,7 +23,7 @@ Route::post('pass/', [App\Http\Controllers\HomeController::class, 'store'])->nam
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 Route::get('/user/edit/{id}', [App\Http\Controllers\AdminController::class, 'edit'])->name('user.edit');
-Route::patch('/dashboard', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
+Route::patch('/home', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('index');
