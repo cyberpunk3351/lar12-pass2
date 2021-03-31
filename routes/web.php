@@ -27,7 +27,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/category', [App\Http\Controllers\AdminController::class, 'category'])->name('category');
-    Route::get('/category/create', [App\Http\Controllers\AdminController::class, 'catcreate'])->name('catcreate');
+    Route::get('/category/create', [App\Http\Controllers\AdminController::class, 'catcreate'])->name('cat.create');
     Route::get('/category/edit/{id}', [App\Http\Controllers\AdminController::class, 'catedit'])->name('cat.edit');
     Route::post('/category', [App\Http\Controllers\AdminController::class, 'catstore'])->name('cat.store');
     Route::patch('/category/edit/{id}', [App\Http\Controllers\AdminController::class, 'updatecat'])->name('cat.update');
