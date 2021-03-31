@@ -90,7 +90,9 @@ class HomeController extends Controller
         $pass = Pass::find($id);
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
+        // $pass->user_id = $id;
         $pass->update();
+        // $id = $pass->pass_id;
         // dd($id);
         return redirect()->route('home');
     }
