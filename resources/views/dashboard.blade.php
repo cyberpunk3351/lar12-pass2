@@ -27,6 +27,7 @@
                             <tr>
                                 <th scope="col">Пароль</th>
                                 <th scope="col">Категория</th>
+                                <th scope="col">Источник</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -36,6 +37,7 @@
                                 <tr>
                                     <td>{{ $pass->title }}</td>
                                     <td>{{ $pass->category->title }}</td>
+                                    <td>{{ $pass->source }}</td>
                                     <td>
                                         <a href="{{ route('pass.edit', ['id'=>$pass->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
                                     </td>
@@ -56,6 +58,7 @@
                             <tr>
                                 <th scope="col">Пароль</th>
                                 <th scope="col">Категория</th>
+                                <th scope="col">Источник</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -65,14 +68,15 @@
                                 <tr>
                                     <td>{{ $pass->title }}</td>
                                     <td>{{ $pass->category->title }}</td>
+                                    <td>{{ $pass->source }}</td>
                                     <td>
-                                        @if (Auth::user()->role_id == 1)
+                                        @if (Auth::user()->role_id == 1 || $user->role->id == $pass->category->editor)
                                             <a href="{{ route('pass.edit', ['id'=>$pass->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
                                         @endif
                                         
                                     </td>
                                     <td>
-                                        @if (Auth::user()->role_id == 1)
+                                        @if (Auth::user()->role_id == 1 || $user->role->id == $pass->category->editor)
                                             <form action="{{ route('pass.destroy', ['id'=>$pass->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
