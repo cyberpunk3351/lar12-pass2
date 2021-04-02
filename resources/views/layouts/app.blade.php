@@ -64,6 +64,7 @@
                                     @if (Auth::user()->role_id == 1)
                                         <a class="dropdown-item" href="{{ route('index') }}">{{ __('User') }}</a>
                                         <a class="dropdown-item" href="{{ route('category') }}">{{ __('Category') }}</a>
+                                        {{-- <a class="dropdown-item" href="{{ route('role') }}">{{ __('Role') }}</a> --}}
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

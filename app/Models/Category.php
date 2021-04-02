@@ -12,4 +12,11 @@ class Category extends Model
         return $this->hasMany(Pass::class,'category_id', 'id');
 
     }
+
+    public function role() {
+
+        return $this->hasOne(Role::class, 'id', 'editor');
+
+    }
+
 }

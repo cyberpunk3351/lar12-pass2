@@ -6,8 +6,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
+                
 
                 <div class="card-body">
+                    
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -16,9 +18,11 @@
 
                     @foreach ($users as $user)
                         <h3>{{ $user->name }}</h3>
-                        <p>{{$user->role->title}}</p>
+                        <p>Роль: {{$user->role->title}}</p>
                     @endforeach
-                    <table class="table">
+                    <a href="{{ route('pass.create') }}" class="btn btn-success mb-3">Создать</a>
+                    <div class="card text-white bg-primary my-2 py-2 text-center">Личные</div>
+                    <table class="table mb-5">
                         <thead>
                             <tr>
                                 <th scope="col">Пароль</th>
@@ -28,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($passes as $pass)
+                            @foreach ($passprivate as $pass)
                                 <tr>
                                     <td>{{ $pass->title }}</td>
                                     <td>{{ $pass->category->title }}</td>
@@ -44,14 +48,42 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
-
-                    <a href="{{ route('pass.create') }}">Создать</a>
-                    
-
-
+                    <div class="card text-white bg-dark my-2 py-2 text-center">Общие</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Пароль</th>
+                                <th scope="col">Категория</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($passcommon as $pass)
+                                <tr>
+                                    <td>{{ $pass->title }}</td>
+                                    <td>{{ $pass->category->title }}</td>
+                                    <td>
+                                        @if (Auth::user()->role_id == 1)
+                                            <a href="{{ route('pass.edit', ['id'=>$pass->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
+                                        @endif
+                                        
+                                    </td>
+                                    <td>
+                                        @if (Auth::user()->role_id == 1)
+                                            <form action="{{ route('pass.destroy', ['id'=>$pass->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" class="btn btn-danger btn-sm" value=" X ">
+                                            </form>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

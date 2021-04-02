@@ -12,4 +12,10 @@ class Role extends Model
         return $this->hasOne(User::class,'role_id', 'id');
 
     }
+
+    public function category() {
+
+        return $this->hasOne(Category::class, 'id');
+
+    }
 }

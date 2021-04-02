@@ -31,7 +31,7 @@ class AdminController extends Controller
     public function admin()
     {
         $users = User::get();
-
+        //dd($users);
         return view('admin.index', compact('users'));
     }
 
@@ -45,6 +45,20 @@ class AdminController extends Controller
         $cats = Category::get();
 
         return view('admin.cat', compact('cats'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function role()
+    {
+        $roles = Role::with('category')->get();
+
+        //dd($roles);
+
+        return view('admin.role', compact('roles'));
     }
 
     /**
@@ -68,8 +82,9 @@ class AdminController extends Controller
      */
     public function catedit($id) {
         $cats = Category::find($id);
+        $roles = Role::with('category')->get();
         //dd($users);
-        return view('admin.catedit', compact('cats'));
+        return view('admin.catedit', compact('cats', 'roles'));
     }
 
     /**
@@ -109,6 +124,7 @@ class AdminController extends Controller
 
         $cats = Category::find($id);
         $cats->title = $request->title;
+        $cats->editor = $request->role_id;
         $cats->update();
         // dd($id);
         return redirect()->route('category');

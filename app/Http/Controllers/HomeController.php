@@ -31,9 +31,10 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $users = User::with('role')->where('id', $id)->get();
-        $passes = Pass::with('user', 'category')->where('user_id', $id)->get();
-        //dd($passes);
-        return view('dashboard', compact('users', 'passes'));
+        $passprivate = Pass::with('user', 'category')->where('user_id', $id)->where('private', 1)->get();
+        $passcommon = Pass::with('user', 'category')->where('private', 0)->get();
+        // dd($id);
+        return view('dashboard', compact('users', 'passprivate', 'passcommon'));
     }
 
     /**
@@ -59,6 +60,11 @@ class HomeController extends Controller
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
+        if($request->has('common')){
+            $pass->private = 0;
+        }else{
+            $pass->private = 1;
+        }
         $pass->save();
         return redirect()->route('home');
     }

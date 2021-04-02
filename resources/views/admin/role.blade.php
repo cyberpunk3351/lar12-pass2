@@ -13,21 +13,21 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h3>Редактирование Категорий</h3>
+                    <h3>Редактирование Ролей</h3>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Имя</th>
-                                <th scope="col">Редактор</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cats as $cat)
+                            @foreach ($roles as $role)
                                 <tr>
-                                    <td>{{ $cat->title }}</td>
-                                    <td>{{ $cat->role->title }}</td>
+                                    <td>{{ $role->title }}</td>
+                                    <td>{{ $role->category->title }}</td>
                                     <td>
-                                        <a href="{{ route('cat.edit', ['id'=>$cat->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
+                                        <a href="#"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
                                     </td>
                                 </tr>
                             @endforeach
