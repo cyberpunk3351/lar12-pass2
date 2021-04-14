@@ -34,7 +34,6 @@ class AdminController extends Controller
         //dd($users);
         return view('admin.index', compact('users'));
     }
-
     /**
      * Show the application dashboard.
      *
@@ -43,10 +42,8 @@ class AdminController extends Controller
     public function category()
     {
         $cats = Category::get();
-
         return view('admin.cat', compact('cats'));
     }
-
     /**
      * Show the application dashboard.
      *

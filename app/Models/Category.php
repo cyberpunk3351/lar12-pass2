@@ -13,10 +13,12 @@ class Category extends Model
 
     }
 
-    public function role() {
-
-        return $this->hasOne(Role::class, 'id', 'editor');
-
+    /**
+     * Получить роли.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'categories_roles', 'categories_id', 'roles_id');
     }
 
 }

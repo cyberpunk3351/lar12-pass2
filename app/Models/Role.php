@@ -13,9 +13,7 @@ class Role extends Model
 
     }
 
-    public function category() {
-
-        return $this->hasOne(Category::class, 'id');
-
+    public function categories() {
+        return $this->belongsToMany(Category::class, 'categories_roles', 'roles_id', 'categories_id');
     }
 }
