@@ -14,8 +14,8 @@ class CreateCategoriesRolesTable extends Migration
     public function up()
     {
         Schema::create('categories_roles', function (Blueprint $table) {
-            $table->foreignId('categories_id')->constrained();
-            $table->foreignId('roles_id')->constrained();
+            $table->foreignId('categories_id');
+            $table->foreignId('roles_id');
             $table->timestamps();
         });
     }

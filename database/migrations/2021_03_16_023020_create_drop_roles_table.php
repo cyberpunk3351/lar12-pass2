@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropRolesTable extends Migration
+class CreateDropRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class DropRolesTable extends Migration
      */
     public function up()
     {
-        Schema::drop('roles');
+        Schema::dropIfExists('roles');
     }
 
     /**
@@ -23,6 +23,6 @@ class DropRolesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('drop_roles');
     }
 }
