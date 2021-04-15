@@ -1,5 +1,10 @@
 <div class="form-group">
+    <p>Пароль:</p>
     <input name="title" type="text" class="form-control"  required value="{{ $pass->title ?? ''}}">
+</div>
+<div class="form-group">
+    <p>Для чего:</p>
+    <input name="source" type="text" class="form-control"  required value="{{ $pass->source ?? ''}}">
 </div>
 <div class="form-group">
     <input type="checkbox" name="common">

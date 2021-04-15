@@ -58,6 +58,7 @@ class HomeController extends Controller
         $id = Auth::user()->id;
         $pass = new Pass();
         $pass->title = $request->title;
+        $pass->source = $request->source;
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
         if($request->has('common')){
