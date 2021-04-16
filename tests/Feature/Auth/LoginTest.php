@@ -40,4 +40,13 @@ class LoginTest extends TestCase
         // $this->assertAuthenticatedAs($user);
         $response->assertSessionHasNoErrors();
     }
+
+    public function testExample()
+    {
+        $response = $this->get('/login');
+
+        $response->dump();
+    }
+
+
 }
