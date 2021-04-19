@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pass extends Model
 {
+    protected $guarded = [];
+    use HasFactory;
+
     public function user() {
 
         return $this->hasOne(User::class,'id', 'user_id');

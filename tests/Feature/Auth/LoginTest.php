@@ -4,49 +4,102 @@ namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Pass;
 
 
 class LoginTest extends TestCase
 {
-    public function test_user_can_view_a_login_form()
+
+    use DatabaseTransactions;
+
+    /**
+     * The login form can be displayed.
+     *
+     * @return void
+     */
+    public function testLoginFormDisplayed()
     {
         $response = $this->get('/login');
-
-        $response->assertSuccessful();
-        $response->assertViewIs('auth.login');
+        $response->assertStatus(200);
     }
 
-    public function test_user_cannot_view_a_login_form_when_authenticated()
+        /**
+     * A valid user can be registered.
+     *
+     * @return void
+     */
+    public function testRegistersAValidUser()
     {
-        $user = User::factory()->make();
-
-        $response = $this->actingAs($user)->get('/login');
-
-        $response->assertRedirect('/home');
+        $user = \App\Models\User::factory(User::class)->make();
+        $response = $this->post('register', [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => 'password',
+            'password_confirmation' => 'password'
+        ]);
+        $response->assertStatus(302);
+        $this->assertAuthenticated();
     }
 
-    public function test_user_can_login_with_correct_credentials()
+    /**
+     * A valid user can be logged in.
+     *
+     * @return void
+     */
+    public function testLoginAValidUser()
     {
-        $user = User::class;
+        $user = \App\Models\User::factory(User::class)->create(['role_id' => 2]);
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password'
+        ]);
+        // $this->assertAuthenticatedAs($user);
+        $response = $this->get('/admin');
+        // $response->assertStatus(302);
+        // $response->assertRedirect('/home');
+        // $response->assertStatus(200);
+        // $this->assertAuthenticatedAs($user);
+        
+        // $response->dump();
+    }
+
+
+    /** @test */
+    public function auth_user_can_view_form_create_pass()
+    {
+        $user = \App\Models\User::factory(User::class)->create();
 
         $response = $this->post('/login', [
-            'email' => 'drummer.ilya@gmail.com',
-            'password' => 'drummer-33',
+            'email' => $user->email,
+            'password' => 'password'
         ]);
 
-        $response->assertRedirect('/home');
-        // $this->assertAuthenticatedAs($user);
-        $response->assertSessionHasNoErrors();
+        $response = $this->get('/pass/create');
+        $response->assertStatus(200);
+
     }
 
-    public function testExample()
+    /** @test */
+    public function auth_user_can_create_pass()
     {
-        $response = $this->get('/login');
+        // $this->withoutExceptionHandling();
 
-        $response->dump();
+        // $this->actingAs(\App\Models\User::factory()->create());
+        $pass = \App\Models\Pass::factory()->make();
+
+        // $this->post('/pass/create',$pass->toArray());
+        // $this->assertEquals(1,Pass::all()->count());
+
+        $this->post('/pass/create',$pass->toArray())
+        ->assertRedirect('/login');
+
+
+        // $response = $this->get('/pass/create');
+        // $response->assertStatus(200);
+
     }
-
-
 }
