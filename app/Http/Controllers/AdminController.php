@@ -41,7 +41,8 @@ class AdminController extends Controller
      */
     public function category()
     {
-        $cats = Category::get();
+        $cats = Category::with('roles')->get();;
+        // dd($cats);
         return view('admin.cat', compact('cats'));
     }
     /**
@@ -79,9 +80,8 @@ class AdminController extends Controller
      */
     public function catedit($id) {
         $cats = Category::find($id);
-        $roles = Role::with('category')->get();
         //dd($users);
-        return view('admin.catedit', compact('cats', 'roles'));
+        return view('admin.catedit', compact('cats'));
     }
 
     /**
@@ -118,7 +118,6 @@ class AdminController extends Controller
      */
     public function updatecat(Request $request, $id)
     {
-
         $cats = Category::find($id);
         $cats->title = $request->title;
         $cats->editor = $request->role_id;

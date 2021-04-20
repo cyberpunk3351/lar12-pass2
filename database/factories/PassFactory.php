@@ -27,6 +27,7 @@ class PassFactory extends Factory
             'user_id' => $this->faker->numberBetween($min = 1, $max = 4),
             'category_id' => $this->faker->numberBetween($min = 1, $max = 9),
             'private' =>  $this->faker->numberBetween($min = 1, $max = 2),
+            'source' =>  $this->faker->domainName,
             
         ];
     }
