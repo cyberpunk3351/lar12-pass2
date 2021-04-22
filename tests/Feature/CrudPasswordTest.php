@@ -27,4 +27,15 @@ class CrudPasswordTest extends TestCase
         $pass = \App\Models\Pass::factory()->make();
         $this->post('/pass',$pass->toArray())->assertRedirect('/login');
     }
+
+    /** @test */
+    public function test_admin_user_can_edit_role_for_users()
+    {
+        $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
+        $user = \App\Models\User::factory()->create();
+        $user->role_id = "8";
+        $this->patch('/role/edit/'.$user->id, $user->toArray());
+        $this->assertDatabaseHas('users',['id'=> $user->id , 'role_id' => '8']);
+    }
+
 }
