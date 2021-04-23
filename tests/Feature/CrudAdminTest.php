@@ -32,4 +32,14 @@ class CrudAdminTest extends TestCase
         $this->assertEquals(1,Category::all()->count());
     }
 
+    /** @test */
+    public function test_admin_user_can_edit_categories()
+    {
+        $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
+        $categories = \App\Models\Category::factory()->create();
+        $categories->title = "Test";
+        $this->patch('/category/edit/'.$categories->id, $categories->toArray());
+        $this->assertDatabaseHas('categories',['id'=> $categories->id , 'title' => 'Test']);
+    }
+
 }
