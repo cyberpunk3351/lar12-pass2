@@ -97,6 +97,11 @@ class HomeController extends Controller
         $pass = Pass::find($id);
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
+        if($request->has('common')){
+            $pass->private = 0;
+        }else{
+            $pass->private = 1;
+        }
         // $pass->user_id = $id;
         $pass->update();
         // $id = $pass->pass_id;
