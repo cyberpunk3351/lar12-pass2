@@ -42,4 +42,41 @@ class CrudAdminTest extends TestCase
         $this->assertDatabaseHas('categories',['id'=> $categories->id , 'title' => 'Test']);
     }
 
+
+    /** @test */
+    public function test_admin_user_can_edit_categories_roles()
+    {
+        $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
+
+        $category = \App\Models\Category::factory()->create();
+        $role = \App\Models\Role::factory()->create();
+
+        // dd($category);
+        // $this->post('/admin/connections', $category->toArray());
+        $category->roles()->sync($role);
+
+        $this->assertDatabaseHas('categories_roles', [
+            'categories_id' => $category->id,
+            'roles_id' => $role->id
+        ]);
+    }
+
+    
+    /** @test */
+    public function test_admin_user_can_edit_categories_roles2()
+    {
+        $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
+
+        $data = [
+            '1' => ['1' => '1'],
+            '2' => ['1' => '1'],
+        ];
+
+        $response = $this->postJson('/admin/connections', $data);
+
+        $response->assertCreated();
+    }
+
+    
+
 }
