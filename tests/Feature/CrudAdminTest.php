@@ -45,30 +45,28 @@ class CrudAdminTest extends TestCase
     }
 
 
-    /** @test */
-    public function test_admin_user_can_edit_categories_roles()
-    {
-        $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
+    // /** @test */
+    // public function test_admin_user_can_edit_categories_roles()
+    // {
+    //     $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
 
-        $category = \App\Models\Category::factory()->create();
-        $role = \App\Models\Role::factory()->create();
-        $category->roles()->sync($role);
+    //     $category = \App\Models\Category::factory()->create();
+    //     $role = \App\Models\Role::factory()->create();
+    //     $category->roles()->sync($role);
 
-        $this->assertDatabaseHas('categories_roles', [
-            'categories_id' => $category->id,
-            'roles_id' => $role->id
-        ]);
-    }
+    //     $this->assertDatabaseHas('categories_roles', [
+    //         'categories_id' => $category->id,
+    //         'roles_id' => $role->id
+    //     ]);
+    // }
 
     
     /** @test */
-    public function test_admin_user_can_edit_categories_roles2()
+    public function test_admin_user_can_edit_categories_roles()
     {
 
         $category = \App\Models\Category::factory()->create(['id' => 1]);
         $role = \App\Models\Role::factory()->create(['id' => 1]);
-
-        // $category->roles()->sync($role);
 
         $data = ['category' => 
             ['1' => ['1' => '1']]
@@ -78,25 +76,10 @@ class CrudAdminTest extends TestCase
         $this->post('/admin/connections', $data);
 
 
-
-        // ->post(route('connections.update'), [
-        //     '1' => ['1' => '1'],
-        //     '2' => ['1' => '1'],
-        //     ]);
-
         $this->assertDatabaseHas('categories_roles', [
             'categories_id' => $category->id,
             'roles_id' => $role->id
         ]);
-
-        // $request = Request::create('/', 'GET', [
-        //     '1' => ['1' => '1'],
-        //     '2' => ['1' => '1'],
-        //     ]);
-
-
-        // dd($request);
-        // $this->post('/admin/connections', $input->toArray());
 
     }
 
