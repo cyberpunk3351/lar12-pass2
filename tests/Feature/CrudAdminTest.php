@@ -70,8 +70,8 @@ class CrudAdminTest extends TestCase
 
         // $category->roles()->sync($role);
 
-        $data = [
-            '1' => ['1' => '1'],
+        $data = ['category' => 
+            ['1' => ['1' => '1']]
         ];
 
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
