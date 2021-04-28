@@ -31,7 +31,7 @@ class CategoriesRolesConnectionsController extends Controller
         foreach (Category::all() as $category) {
             $category->roles()->sync(Arr::get($input, $category->id, []));
         }
-        // dd($category);
+        dd($input);
         return view('home');
     }
 }
