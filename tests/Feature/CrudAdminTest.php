@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Pass;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CrudAdminTest extends TestCase
 {
@@ -38,6 +39,7 @@ class CrudAdminTest extends TestCase
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
         $categories = \App\Models\Category::factory()->create();
         $categories->title = "Test";
+        // dd($categories);
         $this->patch('/category/edit/'.$categories->id, $categories->toArray());
         $this->assertDatabaseHas('categories',['id'=> $categories->id , 'title' => 'Test']);
     }
@@ -50,9 +52,6 @@ class CrudAdminTest extends TestCase
 
         $category = \App\Models\Category::factory()->create();
         $role = \App\Models\Role::factory()->create();
-
-        // dd($category);
-        // $this->post('/admin/connections', $category->toArray());
         $category->roles()->sync($role);
 
         $this->assertDatabaseHas('categories_roles', [
@@ -65,16 +64,30 @@ class CrudAdminTest extends TestCase
     /** @test */
     public function test_admin_user_can_edit_categories_roles2()
     {
-        $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
 
-        $data = [
+        \App\Models\Category::factory()->make(['id' => 1]);
+        \App\Models\Role::factory()->make(['id' => 1]);
+
+        $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]))
+        ->postJson(route('connections.update'), [
             '1' => ['1' => '1'],
             '2' => ['1' => '1'],
-        ];
+            ]);
 
-        $response = $this->postJson('/admin/connections', $data);
+        // $this->assertDatabaseHas('categories_roles', [
+        //     'categories_id' => $category->id,
+        //     'roles_id' => $role->id
+        // ]);
 
-        $response->assertCreated();
+        // $request = Request::create('/', 'GET', [
+        //     '1' => ['1' => '1'],
+        //     '2' => ['1' => '1'],
+        //     ]);
+
+
+        // dd($request);
+        // $this->post('/admin/connections', $input->toArray());
+
     }
 
     
