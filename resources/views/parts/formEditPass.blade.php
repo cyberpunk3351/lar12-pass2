@@ -1,10 +1,11 @@
 <div class="form-group">
+    <p>Пароль:</p>
     <input name="title" type="text" class="form-control"  required value="{{ $pass->title ?? ''}}">
 </div>
 <div class="form-group">
     <input type="checkbox" name="private" 
-    {{ $pass->private == 0 ? 'checked' : '' }}>
-        <label>Общий</label>
+    {{ $pass->private == 1 ? 'checked' : '' }}>
+        <label>Личный</label>
 </div>
 <div class="form-group">
     <label for="category_id">Категория</label>

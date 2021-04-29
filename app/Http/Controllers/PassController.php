@@ -34,13 +34,6 @@ class PassController extends Controller
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
         $pass->private = $request->private ? 0 : 1;
-
-        // if($request->has('common')){
-        //     $pass->private = 0;
-        // }else{
-        //     $pass->private = 1;
-        // }
-
         $pass->save();
         return redirect()->route('home');
     }
@@ -71,13 +64,6 @@ class PassController extends Controller
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
         $pass->private = $request->private ? 0 : 1;
-
-        // if($request->has('common')){
-        //     $pass->private = 0;
-        // }else{
-        //     $pass->private = 1;
-        // }
-
         $pass->update();
         return redirect()->route('home');
     }

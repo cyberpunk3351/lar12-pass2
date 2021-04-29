@@ -8,7 +8,7 @@
 </div>
 <div class="form-group">
     <input type="checkbox" name="private">
-        <label>Общий</label>
+        <label>Личный</label>
 </div>
 <div class="form-group">
     <label for="category_id">Категория</label>
