@@ -33,11 +33,14 @@ class PassController extends Controller
         $pass->source = $request->source;
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
-        if($request->has('common')){
-            $pass->private = 0;
-        }else{
-            $pass->private = 1;
-        }
+        $pass->private = $request->private ? 1 : 0;
+
+        // if($request->has('common')){
+        //     $pass->private = 0;
+        // }else{
+        //     $pass->private = 1;
+        // }
+
         $pass->save();
         return redirect()->route('home');
     }
@@ -51,8 +54,6 @@ class PassController extends Controller
     public function edit($id) {
         $pass = Pass::find($id);
         $categorys = Category::with('pass')->get();
-
-        //dd($pass);
         return view('edit', compact('pass', 'categorys'));
     }
 
@@ -69,15 +70,15 @@ class PassController extends Controller
         $pass = Pass::find($id);
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
-        if($request->has('common')){
-            $pass->private = 0;
-        }else{
-            $pass->private = 1;
-        }
-        // $pass->user_id = $id;
+        $pass->private = $request->private ? 0 : 1;
+
+        // if($request->has('common')){
+        //     $pass->private = 0;
+        // }else{
+        //     $pass->private = 1;
+        // }
+
         $pass->update();
-        // $id = $pass->pass_id;
-        // dd($id);
         return redirect()->route('home');
     }
 

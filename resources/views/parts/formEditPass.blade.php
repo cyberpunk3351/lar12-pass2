@@ -2,7 +2,7 @@
     <input name="title" type="text" class="form-control"  required value="{{ $pass->title ?? ''}}">
 </div>
 <div class="form-group">
-    <input type="checkbox" name="common" 
+    <input type="checkbox" name="private" 
     {{ $pass->private == 0 ? 'checked' : '' }}>
         <label>Общий</label>
 </div>
