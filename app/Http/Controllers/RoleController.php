@@ -42,7 +42,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function role()
+    public function index()
     {
         $roles = Role::with('categories')->get();
 
