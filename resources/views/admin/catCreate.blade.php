@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <h3>Редактировать</h3>
-                    <form action="{{ route('cat.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @include('admin.parts.formCatCreate')
                         <input type="submit" value="Создать" class="btn btn-outline-success">

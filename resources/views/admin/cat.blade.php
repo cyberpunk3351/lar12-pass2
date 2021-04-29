@@ -27,14 +27,14 @@
                                     <td>{{ $cat->title }}</td>
                                     <td></td>
                                     <td>
-                                        <a href="{{ route('cat.edit', ['id'=>$cat->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
+                                        <a href="{{ route('category.edit', ['id'=>$cat->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
                                     </td>
                                 </tr>
                             @endforeach
 
                         </tbody>
                     </table>
-                    <a href="{{ route('cat.create') }}">Создать</a>
+                    <a href="{{ route('category.create') }}">Создать</a>
                 </div>
             </div>
         </div>

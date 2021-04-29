@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $pass = new Category();
         $pass->title = $request->title;
         $pass->save();
-        return redirect()->route('category');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -67,6 +67,6 @@ class CategoryController extends Controller
         // $cats->editor = $request->role_id;
         $cats->update();
         // dd($id);
-        return redirect()->route('category');
+        return redirect()->route('category.index');
     }
 }

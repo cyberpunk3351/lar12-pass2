@@ -26,11 +26,11 @@ Route::group(['middleware' => ['admin']], function () {
 });
 
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');
-    Route::get('/category/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('cat.create');
-    Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('cat.edit');
-    Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('cat.store');
-    Route::patch('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('cat.update');
+    Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
+    Route::get('/category/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
+    Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+    Route::patch('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
 
     Route::get('role/edit/{id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
     Route::patch('/role/edit/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('role.update');

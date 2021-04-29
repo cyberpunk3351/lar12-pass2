@@ -34,7 +34,7 @@
 
                         </tbody>
                     </table>
-                    <a href="{{ route('cat.create') }}">Создать</a>
+                    <a href="{{ route('category.create') }}">Создать</a>
                 </div>
             </div>
         </div>
