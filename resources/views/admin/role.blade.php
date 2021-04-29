@@ -25,7 +25,6 @@
                             @foreach ($roles as $role)
                                 <tr>
                                     <td>{{ $role->title }}</td>
-                                    <td>{{ $role->category->title }}</td>
                                     <td>
                                         <a href="#"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
                                     </td>

@@ -44,7 +44,7 @@ class RoleController extends Controller
      */
     public function role()
     {
-        $roles = Role::with('category')->get();
+        $roles = Role::with('categories')->get();
 
         //dd($roles);
 
