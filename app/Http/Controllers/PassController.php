@@ -33,7 +33,7 @@ class PassController extends Controller
         $pass->source = $request->source;
         $pass->category_id = $request->category_id;
         $pass->user_id = $id;
-        $pass->private = $request->private ? 1 : 0;
+        $pass->private = $request->private ? 0 : 1;
 
         // if($request->has('common')){
         //     $pass->private = 0;

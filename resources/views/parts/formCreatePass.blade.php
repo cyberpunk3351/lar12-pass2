@@ -7,7 +7,7 @@
     <input name="source" type="text" class="form-control"  required value="{{ $pass->source ?? ''}}">
 </div>
 <div class="form-group">
-    <input type="checkbox" name="common">
+    <input type="checkbox" name="private">
         <label>Общий</label>
 </div>
 <div class="form-group">
