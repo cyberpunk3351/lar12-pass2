@@ -70,7 +70,7 @@ class CrudAdminTest extends TestCase
             ['1' => ['1' => '1']]
         ];
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
-        $this->post('/admin/connections', $data);
+        $this->post('/admin/permission', $data);
         $this->assertDatabaseHas('categories_roles', [
             'categories_id' => $category->id,
             'roles_id' => $role->id

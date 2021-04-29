@@ -34,10 +34,10 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::get('role/edit/{id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
     Route::patch('/role/edit/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('role.update');
-    Route::get('/role', [App\Http\Controllers\RoleController::class, 'role'])->name('role.index');
+    Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
 
-    Route::get('/admin/connections', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('connections.index');
-    Route::post('/admin/connections', [App\Http\Controllers\Admin\CategoriesRolesConnectionsController::class, 'update'])->name('connections.update');
+    Route::get('/admin/permission', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('permission.index');
+    Route::post('/admin/permission', [App\Http\Controllers\Admin\CategoriesRolesPermissionsController::class, 'update'])->name('permission.update');
 });
 
 Auth::routes();

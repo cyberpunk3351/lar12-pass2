@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
 use App\Models\Category;
 
 
-class CategoriesRolesConnectionsController extends Controller
+class CategoriesRolesPermissionsController extends Controller
 {
     /**
      * Create a new controller instance.
