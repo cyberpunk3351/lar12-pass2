@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+
 class Pass extends Model
 {
-    // protected $guarded = [];
+    protected $guarded = [];
 
     use HasFactory;
     protected $fillable = [
@@ -18,7 +19,14 @@ class Pass extends Model
         'category_id',
     ];
 
-    protected $attributes = ['user_id' => 0];
+    protected $attributes;
+
+    public function __construct($attributes = [])
+    {
+        $this->setRawAttributes([
+        'user_id' => Auth::user()->id], true);
+        parent::__construct($attributes);
+    }
 
     // public function save(array $options = array())
     // {
@@ -42,7 +50,7 @@ class Pass extends Model
 
     // public function getUserIdAttribute()
     // {
-    //     return $this->user_id;
+    //     return $this->user_id = Auth::user()->id;
 
     // }
 
