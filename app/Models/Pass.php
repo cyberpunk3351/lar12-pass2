@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Pass extends Model
 {
-    protected $guarded = [];
+    // protected $guarded = [];
 
     use HasFactory;
     protected $fillable = [
@@ -23,8 +23,7 @@ class Pass extends Model
 
     public function __construct($attributes = [])
     {
-        $this->setRawAttributes([
-        'user_id' => Auth::user()->id], true);
+        $this->setUserIdAttribute();
         parent::__construct($attributes);
     }
 
@@ -48,16 +47,15 @@ class Pass extends Model
     //     });
     // }
 
-    // public function getUserIdAttribute()
+    // public function getUserIdAttribute($attributes)
     // {
-    //     return $this->user_id = Auth::user()->id;
+    //     return $attributes['user_id'] = Auth::user()->id;
 
     // }
 
-    public function setUserIdAttribute()
+    private function setUserIdAttribute()
     {
         $this->attributes['user_id'] = Auth::user()->id;
-
     }
 
     public function user() {
