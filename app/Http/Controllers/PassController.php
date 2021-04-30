@@ -27,14 +27,15 @@ class PassController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $id = Auth::user()->id;
-        $pass = new Pass();
-        $pass->title = $request->title;
-        $pass->source = $request->source;
-        $pass->category_id = $request->category_id;
-        $pass->user_id = $id;
-        $pass->private = $request->private ? 0 : 1;
-        $pass->save();
+        // $id = Auth::user()->id;
+        Pass::create($request->pass);
+        // dd($request->pass);
+        // $pass->title = $request->title;
+        // $pass->source = $request->source;
+        // $pass->category_id = $request->category_id;
+        // $pass->user_id = $id;
+        // $pass->private = $request->private ? 0 : 1;
+        // $pass->save();
         return redirect()->route('home');
     }
 
