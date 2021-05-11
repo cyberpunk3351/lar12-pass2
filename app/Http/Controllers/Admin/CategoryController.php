@@ -25,7 +25,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('admin.categories.create');
+        return view('admin.categories.create')->with([
+            'view_type' => 'create',
+        ]);
     }
 
     /**
@@ -36,7 +38,9 @@ class CategoryController extends Controller
      */
     public function edit($id) {
         $cats = Category::find($id);
-        return view('admin.categories.edit', compact('cats'));
+        return view('admin.categories.create', compact('cats'))->with([
+            'view_type' => 'edit',
+        ]);
     }
 
     /**
