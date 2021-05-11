@@ -62,7 +62,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->role_id == 1)
-                                        <a class="dropdown-item" href="{{ route('index') }}">{{ __('Пользователи') }}</a>
+                                        <a class="dropdown-item" href="{{ route('user.index') }}">{{ __('Пользователи') }}</a>
                                         <a class="dropdown-item" href="{{ route('category.index') }}">{{ __('Категории') }}</a>
                                         <a class="dropdown-item" href="{{ route('permission.index') }}">{{ __('Связи') }}</a>
                                     @endif

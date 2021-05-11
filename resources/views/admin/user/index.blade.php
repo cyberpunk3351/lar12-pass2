@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Панель управления') }}</div>
+                <div class="card-header">Панель управления пользователями</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -29,7 +29,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->role->title}}</td>
                                     <td>
-                                        <a href="{{ route('role.edit', ['id'=>$user->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
+                                        <a href="{{ route('user.edit', ['id'=>$user->id])}}"><button type="button" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></button></a>
                                     </td>
                                 </tr>
                             @endforeach
