@@ -45,9 +45,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $pass = new Category();
-        $pass->title = $request->title;
-        $pass->save();
+        Category::create($request->category);
         return redirect()->route('category.index');
     }
 
@@ -60,9 +58,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cats = Category::find($id);
-        $cats->title = $request->title;
-        $cats->update();
+        Category::find($id)->update($request->category);
         return redirect()->route('category.index');
     }
 }

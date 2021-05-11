@@ -4,5 +4,5 @@
 
 </div>
 <div class="form-group">
-    <input name="title" type="text" class="form-control"  required value="{{ $cats->title ?? ''}}">
+    <input name="category[title]" type="text" class="form-control"  required value="{{ $cats->title ?? ''}}">
 </div>
