@@ -64,9 +64,7 @@ class CategoryController extends Controller
     {
         $cats = Category::find($id);
         $cats->title = $request->title;
-        // $cats->editor = $request->role_id;
         $cats->update();
-        // dd($id);
         return redirect()->route('category.index');
     }
 }

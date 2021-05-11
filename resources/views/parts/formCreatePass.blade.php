@@ -14,7 +14,7 @@
 <div class="form-group">
     <label for="category_id">Категория</label>
     <select name="pass[category_id]" id="category_id" class="form-control">
-        @foreach ($categorys as $category)
+        @foreach ($categories as $category)
             <option value="{{$category->id}}">{{$category->title}}</option>
         @endforeach
     </select>

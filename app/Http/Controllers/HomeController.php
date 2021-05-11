@@ -33,7 +33,6 @@ class HomeController extends Controller
         $users = User::with('role')->where('id', $id)->get();
         $passprivate = Pass::with('user', 'category')->where('user_id', $id)->where('private', 1)->get();
         $passcommon = Pass::with('user', 'category')->where('private', 0)->get();
-        // dd($id);
         return view('dashboard', compact('users', 'passprivate', 'passcommon'));
     }
 

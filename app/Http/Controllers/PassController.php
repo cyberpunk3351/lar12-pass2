@@ -15,8 +15,8 @@ class PassController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $categorys = Category::all();
-        return view('create', compact('categorys'));
+        $categories = Category::all();
+        return view('create', compact('categories'));
     }
 
     /**
