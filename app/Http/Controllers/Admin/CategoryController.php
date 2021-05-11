@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -14,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cats = Category::with('roles')->get();;
-        return view('admin.cat', compact('cats'));
+        $cats = Category::get();
+        return view('admin.categories.index', compact('cats'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('admin.catCreate');
+        return view('admin.categories.create');
     }
 
     /**
@@ -35,7 +36,7 @@ class CategoryController extends Controller
      */
     public function edit($id) {
         $cats = Category::find($id);
-        return view('admin.catedit', compact('cats'));
+        return view('admin.categories.edit', compact('cats'));
     }
 
     /**

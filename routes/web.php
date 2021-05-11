@@ -22,15 +22,11 @@ Route::patch('/pass/edit/{id}', [App\Http\Controllers\PassController::class, 'up
 Route::delete('pass/{id}', [App\Http\Controllers\PassController::class, 'destroy'])->name('pass.destroy');
 
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
-    Route::get('/category/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
-    Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
-    Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
-    Route::patch('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
-
-    // Route::get('role/edit/{id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
-    // Route::patch('/role/edit/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('role.update');
-    // Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
+    Route::get('/admin/category', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.index');
+    Route::get('/admin/category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
+    Route::get('/admin/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/admin/category', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+    Route::patch('/admin/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category.update');
 
     Route::get('/admin/permission', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('permission.index');
     Route::post('/admin/permission', [App\Http\Controllers\Admin\CategoriesRolesPermissionsController::class, 'update'])->name('permission.update');

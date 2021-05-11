@@ -11,7 +11,12 @@
                     <h3>Редактировать</h3>
                     <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @include('admin.parts.formCatCreate')
+                        <div class="form-group">
+                            <label for="cat_id">Категория</label>
+                        </div>
+                        <div class="form-group">
+                            <input name="category[title]" type="text" class="form-control"  required value="{{ $cats->title ?? ''}}">
+                        </div>
                         <input type="submit" value="Создать" class="btn btn-outline-success">
 
                     </form>

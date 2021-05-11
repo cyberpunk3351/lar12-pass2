@@ -12,7 +12,14 @@
                     <form action="{{ route('category.update', ['id'=>$cats->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
-                        @include('admin.parts.formCatEdit')
+                        <div class="form-group">
+                            <label for="cat_id">Категория</label>
+                            {{$cats->tite}}
+                        
+                        </div>
+                        <div class="form-group">
+                            <input name="category[title]" type="text" class="form-control"  required value="{{ $cats->title ?? ''}}">
+                        </div>
                         <input type="submit" value="Редактировать" class="btn btn-outline-success">
 
                     </form>
