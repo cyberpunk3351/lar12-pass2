@@ -16,7 +16,7 @@ class PassController extends Controller
      */
     public function create() {
         $categorys = Category::all();
-        // dd($pass);
+        $pass = Pass::all();
         return view('create', compact('categorys'));
     }
 
@@ -27,15 +27,7 @@ class PassController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        // $id = Auth::user()->id;
         Pass::create($request->pass);
-        // dd($request->pass);
-        // $pass->title = $request->title;
-        // $pass->source = $request->source;
-        // $pass->category_id = $request->category_id;
-        // $pass->user_id = $id;
-        // $pass->private = $request->private ? 0 : 1;
-        // $pass->save();
         return redirect()->route('home');
     }
 
@@ -47,7 +39,7 @@ class PassController extends Controller
      */
     public function edit($id) {
         $pass = Pass::find($id);
-        $categorys = Category::with('pass')->get();
+        $categorys = Category::get();
         return view('edit', compact('pass', 'categorys'));
     }
 
@@ -60,7 +52,6 @@ class PassController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $pass = Pass::find($id);
         $pass->title = $request->title;
         $pass->category_id = $request->category_id;
@@ -77,8 +68,7 @@ class PassController extends Controller
      */
     public function destroy($id)
     {
-        $pass = Pass::find($id);
-        $pass->delete();
+        Pass::find($id)->delete();
         return redirect()->route('home');
     }
 }

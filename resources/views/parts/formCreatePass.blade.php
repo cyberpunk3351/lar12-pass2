@@ -6,10 +6,11 @@
     <p>Для чего:</p>
     <input name="pass[source]" type="text" class="form-control"  required value="{{ $pass->source ?? ''}}">
 </div>
-{{-- <div class="form-group">
-    <input type="checkbox" name="pass[private]">
+<div class="form-group">
+    <input type="hidden" name="pass[private]" value=0>
+    <input type="checkbox" name="pass[private]" value=1>
         <label>Личный</label>
-</div> --}}
+</div>
 <div class="form-group">
     <label for="category_id">Категория</label>
     <select name="pass[category_id]" id="category_id" class="form-control">
