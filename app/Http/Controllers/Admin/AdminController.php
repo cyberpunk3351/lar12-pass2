@@ -33,6 +33,6 @@ class AdminController extends Controller
         $roles = Role::with('categories')->get();
         $categories = Category::with('roles')->get();
         // dd($roles);
-        return view('admin.connections', compact('roles', 'categories'));
+        return view('admin.permissions.index', compact('roles', 'categories'));
     }
 }
