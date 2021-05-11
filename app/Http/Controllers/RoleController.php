@@ -29,9 +29,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = User::find($id);
-        $role->role_id = $request->role_id;
-        $role->update();
+        User::find($id)->update($request->user);
         return redirect()->route('index');
     }
 

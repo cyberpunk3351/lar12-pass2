@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <form action="{{ route('connections.update')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('permission.update')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @foreach ($categories as $category)
                                 <tr>
