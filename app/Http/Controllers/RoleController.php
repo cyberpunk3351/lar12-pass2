@@ -15,10 +15,9 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $users = User::find($id);
+        $user = User::find($id);
         $roles = Role::with('user')->get();
-        //dd($users);
-        return view('admin.edit', compact('users', 'roles'));
+        return view('admin.edit', compact('user', 'roles'));
     }
 
     /**
@@ -33,7 +32,6 @@ class RoleController extends Controller
         $role = User::find($id);
         $role->role_id = $request->role_id;
         $role->update();
-        // dd($id);
         return redirect()->route('index');
     }
 
@@ -45,9 +43,6 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::with('categories')->get();
-
-        //dd($roles);
-
         return view('admin.role', compact('roles'));
     }
 }

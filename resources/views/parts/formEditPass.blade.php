@@ -1,16 +1,21 @@
 <div class="form-group">
     <p>Пароль:</p>
-    <input name="title" type="text" class="form-control"  required value="{{ $pass->title ?? ''}}">
+    <input name="pass[title]" type="text" class="form-control"  required value="{{ $pass->title ?? ''}}">
 </div>
 <div class="form-group">
-    <input type="checkbox" name="private" 
-    {{ $pass->private == 1 ? 'checked' : '' }}>
+    <p>Для чего:</p>
+    <input name="pass[source]" type="text" class="form-control"  required value="{{ $pass->source ?? ''}}">
+</div>
+<div class="form-group">
+    <input type="hidden" name="pass[private]" value=0>
+    <input type="checkbox" name="pass[private]" 
+    {{ $pass->private == 1 ? 'checked' : '' }} value=1>
         <label>Личный</label>
 </div>
 <div class="form-group">
     <label for="category_id">Категория</label>
 
-    <select name="category_id" id="category_id" class="form-control">
+    <select name="pass[category_id]" id="category_id" class="form-control">
         
         @foreach ($categorys as $category)
             

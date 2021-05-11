@@ -16,7 +16,6 @@ class PassController extends Controller
      */
     public function create() {
         $categorys = Category::all();
-        $pass = Pass::all();
         return view('create', compact('categorys'));
     }
 
@@ -52,11 +51,7 @@ class PassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pass = Pass::find($id);
-        $pass->title = $request->title;
-        $pass->category_id = $request->category_id;
-        $pass->private = $request->private ? 0 : 1;
-        $pass->update();
+        Pass::find($id)->update($request->pass);
         return redirect()->route('home');
     }
 
