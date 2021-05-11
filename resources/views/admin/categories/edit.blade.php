@@ -9,15 +9,18 @@
 
                 <div class="card-body">
                     <h3>Редактировать</h3>
-                    <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('category.update', ['id'=>$cats->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PATCH')
                         <div class="form-group">
                             <label for="cat_id">Категория</label>
+                            {{$cats->tite}}
+                        
                         </div>
                         <div class="form-group">
                             <input name="category[title]" type="text" class="form-control"  required value="{{ $cats->title ?? ''}}">
                         </div>
-                        <input type="submit" value="Создать" class="btn btn-outline-success">
+                        <input type="submit" value="Редактировать" class="btn btn-outline-success">
 
                     </form>
 
