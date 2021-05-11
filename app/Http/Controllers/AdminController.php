@@ -31,7 +31,6 @@ class AdminController extends Controller
     public function admin()
     {
         $users = User::get();
-        //dd($users);
         return view('admin.index', compact('users'));
     }
 

@@ -15,7 +15,6 @@ class CategoryController extends Controller
     public function index()
     {
         $cats = Category::with('roles')->get();;
-        // dd($cats);
         return view('admin.cat', compact('cats'));
     }
 
@@ -36,7 +35,6 @@ class CategoryController extends Controller
      */
     public function edit($id) {
         $cats = Category::find($id);
-        //dd($users);
         return view('admin.catedit', compact('cats'));
     }
 
