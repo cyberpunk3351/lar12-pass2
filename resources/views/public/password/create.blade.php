@@ -8,8 +8,11 @@
                 <div class="card-header">Панель управления</div>
                 <div class="card-body">
                     <h3>Создать</h3>
-                    <form action="{{ route('pass.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ (empty($pass) ? route('pass.store') : route('pass.update', ['id'=>$pass->id])) }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @if (isset($pass))
+                            @method('PATCH')
+                        @endif
                         <div class="form-group">
                             <p>Пароль:</p>
                             <input name="pass[title]" type="text" class="form-control"  required value="{{ $pass->title ?? ''}}">
@@ -20,10 +23,11 @@
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="pass[private]" value=0>
-                            <input type="checkbox" name="pass[private]" 
+                            <input type="checkbox" name="pass[private]"
                             @if (isset($pass))
-                            {{ $pass->private == 1 ? 'checked' : '' }} value=1>
-                            @endif
+                            {{ $pass->private == 1 ? 'checked' : '' }}
+                            @endif value=1>
+                            
                                 <label>Личный</label>
                         </div>
                         <div class="form-group">
