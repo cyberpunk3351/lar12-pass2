@@ -9,10 +9,10 @@
 
                 <div class="card-body">
                     <h3>Редактировать</h3>
-                    <form action="{{ ($view_type == 'create' ? route('category.store') : route('category.update', ['id'=>$cats->id]))}}" method="post" enctype="multipart/form-data">
+                    <form action="{{ (empty($cats) ? route('category.store') : route('category.update', ['id'=>$cats->id])) }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @if ($view_type !== 'create')
-                        @method('PATCH')
+                        @if (isset($cats))
+                            @method('PATCH')
                         @endif
                         <div class="form-group">
                             <label for="cat_id">Категория</label>
