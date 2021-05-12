@@ -28,7 +28,7 @@ class CrudAdminTest extends TestCase
     public function test_admin_user_can_create_categories()
     {
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
-        $categories = \App\Models\Category::factory()->make();
+        $categories = \App\Models\Category::factory()->create();
         $this->post('/admin/category',$categories->toArray());
         $this->assertEquals(1,Category::all()->count());
     }
@@ -38,8 +38,8 @@ class CrudAdminTest extends TestCase
     {
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
         $categories = \App\Models\Category::factory()->create();
-        $categories->title = "Test";
-        $this->patch('/admin/category/edit/'.$categories->id, $categories->toArray());
+        $categoriy = ['category' => ['title' => 'Test']];
+        $this->patch('/admin/category/edit/'.$categories->id, $categoriy);
         $this->assertDatabaseHas('categories',['id'=> $categories->id , 'title' => 'Test']);
     }
 
