@@ -16,7 +16,7 @@ class PassController extends Controller
      */
     public function create() {
         $categories = Category::all();
-        return view('create', compact('categories'));
+        return view('public.password.create', compact('categories'));
     }
 
     /**
@@ -39,7 +39,7 @@ class PassController extends Controller
     public function edit($id) {
         $pass = Pass::find($id);
         $categorys = Category::get();
-        return view('edit', compact('pass', 'categorys'));
+        return view('public.password.edit', compact('pass', 'categorys'));
     }
 
         /**

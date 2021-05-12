@@ -19,8 +19,8 @@ class CrudAdminTest extends TestCase
     {
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
         $user = \App\Models\User::factory()->create();
-        $user->role_id = "8";
-        $this->patch('/role/edit/'.$user->id, $user->toArray());
+        $users = ['user' => ['role_id' => 8]];
+        $this->patch('/admin/user/edit/'.$user->id, $users);
         $this->assertDatabaseHas('users',['id'=> $user->id , 'role_id' => '8']);
     }
 
@@ -29,7 +29,7 @@ class CrudAdminTest extends TestCase
     {
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
         $categories = \App\Models\Category::factory()->make();
-        $this->post('/category',$categories->toArray());
+        $this->post('/admin/category',$categories->toArray());
         $this->assertEquals(1,Category::all()->count());
     }
 
@@ -39,7 +39,7 @@ class CrudAdminTest extends TestCase
         $this->actingAs(\App\Models\User::factory()->create(['role_id' => 1]));
         $categories = \App\Models\Category::factory()->create();
         $categories->title = "Test";
-        $this->patch('/category/edit/'.$categories->id, $categories->toArray());
+        $this->patch('/admin/category/edit/'.$categories->id, $categories->toArray());
         $this->assertDatabaseHas('categories',['id'=> $categories->id , 'title' => 'Test']);
     }
 

@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $cats = Category::get();
-        return view('admin.categories.index', compact('cats'));
+        return view('admin.category.index', compact('cats'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('admin.categories.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -35,8 +35,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $cats = Category::find($id);
-        return view('admin.categories.create', compact('cats'));
+        $cat = Category::find($id);
+        return view('admin.category.create', compact('cat'));
     }
 
     /**
