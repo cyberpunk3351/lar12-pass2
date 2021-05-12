@@ -38,8 +38,8 @@ class PassController extends Controller
      */
     public function edit($id) {
         $pass = Pass::find($id);
-        $categorys = Category::get();
-        return view('public.password.edit', compact('pass', 'categorys'));
+        $categories = Category::get();
+        return view('public.password.create', compact('pass', 'categories'));
     }
 
         /**
